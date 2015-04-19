@@ -172,6 +172,7 @@ class zabbix::agent (
   $monitored_by_proxy    = $zabbix::params::monitored_by_proxy,
   $agent_use_ip          = $zabbix::params::agent_use_ip,
   $zbx_group             = $zabbix::params::agent_zbx_group,
+  $zbx_create_group      = $zabbix::params::agent_zbx_create_group,
   $zbx_templates         = $zabbix::params::agent_zbx_templates,
   $agent_configfile_path = $zabbix::params::agent_configfile_path,
   $pidfile               = $zabbix::params::agent_pidfile,
@@ -238,13 +239,14 @@ class zabbix::agent (
     }
 
     class { 'zabbix::resources::agent':
-      hostname  => $::fqdn,
-      ipaddress => $listen_ip,
-      use_ip    => $agent_use_ip,
-      port      => $listenport,
-      group     => $zbx_group,
-      templates => $zbx_templates,
-      proxy     => $use_proxy,
+      hostname     => $::fqdn,
+      ipaddress    => $listen_ip,
+      use_ip       => $agent_use_ip,
+      port         => $listenport,
+      group        => $zbx_group,
+      create_group => $create_group,
+      templates    => $zbx_templates,
+      proxy        => $use_proxy,
     }
   }
 
