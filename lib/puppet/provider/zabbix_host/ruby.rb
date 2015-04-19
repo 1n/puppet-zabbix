@@ -47,6 +47,12 @@ Puppet::Type.type(:zabbix_host).provide(:ruby, :parent => Puppet::Provider::Zabb
     if ipaddress.nil? and use_ip == 0
       ipaddress = ''
     end
+
+    if hostgroup_create == true
+        hostgroup_create = 1
+    else
+        hostgroup_create = 0
+    end
  
     # First check if we have an correct hostgroup and if not, we raise an error.
     search_hostgroup = zbx.hostgroups.get_id(:name => hostgroup)
