@@ -19,7 +19,7 @@ class zabbix::resources::agent (
   $use_ip       = undef,
   $port         = undef,
   $group        = undef,
-  $create_group = undef,
+  $group_create = undef,
   $templates    = undef,
   $proxy        = undef,
 ) {
@@ -29,7 +29,7 @@ class zabbix::resources::agent (
     use_ip         => $use_ip,
     port           => $port,
     group          => $group,
-    create_group   => $create_group,
+    group_create   => $group_create,
     templates      => $templates,
     proxy          => $proxy,
     zabbix_url     => '',

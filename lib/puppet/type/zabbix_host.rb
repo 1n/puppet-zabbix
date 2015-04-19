@@ -25,7 +25,7 @@ Puppet::Type.newtype(:zabbix_host) do
     desc 'Name of the hostgroup.'
   end
 
-  newparam(:create_group) do
+  newparam(:group_create) do
     desc 'Create hostgroup if missing.'
   end
 
