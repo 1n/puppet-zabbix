@@ -244,7 +244,7 @@ class zabbix::agent (
       use_ip       => $agent_use_ip,
       port         => $listenport,
       group        => $zbx_group,
-      create_group => $create_group,
+      create_group => $zbx_create_group,
       templates    => $zbx_templates,
       proxy        => $use_proxy,
     }
