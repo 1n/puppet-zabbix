@@ -59,7 +59,7 @@ Puppet::Type.type(:zabbix_host).provide(:ruby, :parent => Puppet::Provider::Zabb
     if search_hostgroup.nil? and hostgroup_create == 1
         zbx.hostgroups.create(:name => hostgroup)
         search_hostgroup = zbx.hostgroups.get_id(:name => hostgroup)
-    else
+    elsif search_hostgroup.nil? and hostgroup_create == 0
         raise Puppet::Error, "The hostgroup (" + hostgroup + ") does not exist in zabbix. Please use the correct one."
     end
 
