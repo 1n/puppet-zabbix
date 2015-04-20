@@ -228,6 +228,6 @@ class zabbix::params {
   $javagateway_startpollers      = '5'
 
   # Template specific params
-  $templ_name                    = undef,
-  $templ_source                  = undef,
+  $templ_name                    = undef
+  $templ_source                  = undef
 }
