@@ -9,8 +9,8 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     end
         
     # Set some vars
-    template_name = @resource[:template]
-    template_source = @resource[:source]
+    template_name = @resource[:template_name]
+    template_source = @resource[:template_source]
     zabbix_url = @resource[:zabbix_url]
     zabbix_user = @resource[:zabbix_user]
     zabbix_pass = @resource[:zabbix_pass]

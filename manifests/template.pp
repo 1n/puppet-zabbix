@@ -1,5 +1,6 @@
 class zabbix::template (
-  
+  template_name = undef,
+  template_source = undef,
   ) inherits zabbix::params {
 
   class { 'zabbix::resources::template':
