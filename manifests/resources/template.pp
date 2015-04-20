@@ -19,7 +19,7 @@ class zabbix::resources::template (
 ) {
 
   @@zabbix_template { $template_name:
-    source         => $template_source,
+    template_source         => $template_source,
     zabbix_url     => '',
     zabbix_user    => '',
     zabbix_pass    => '',
