@@ -1,6 +1,6 @@
-class zabbix::template (
-  templ_name = $zabbix::params::templ_name,
-  templ_source = $zabbix::params::templ_source,
+class zabbix::template ( 
+  $templ_name   = $zabbix::params::templ_name,
+  $templ_source = $zabbix::params::templ_source,
   ) inherits zabbix::params {
 
   class { 'zabbix::resources::template':
