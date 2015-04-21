@@ -1,4 +1,4 @@
-Puppet::Type.newtype(:zabbix_host) do
+Puppet::Type.newtype(:zabbix_template) do
 
   ensurable do
     defaultvalues
