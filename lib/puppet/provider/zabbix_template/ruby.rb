@@ -18,7 +18,7 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
 
     # Connect to zabbix api
     zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-    
+=begin
     # Get the template ids.
     template_array = Array.new
     if templates.kind_of?(Array)
@@ -29,7 +29,7 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     else
         template_array.push self.class.get_template_id(zbx, templates)
     end
-
+=end
     zbx.configurations.import(
 	    :format => "xml",
 	    :rules => {
