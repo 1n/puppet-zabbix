@@ -46,4 +46,23 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
 		)
 	end
 
+  def exists?
+    zabbix_url = @resource[:zabbix_url]
+
+    if zabbix_url != ''
+        self.class.require_zabbix
+    end
+
+    template_name = @resource[:template_name]
+    template_source = @resource[:template_source]
+    zabbix_user = @resource[:zabbix_user]
+    zabbix_pass = @resource[:zabbix_pass]
+    apache_use_ssl = @resource[:apache_use_ssl]
+
+    self.class.check_template_in_host(host,template,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    template_id = self.get_template_id(zbx,template_name)
+        
+  end
+
 end
