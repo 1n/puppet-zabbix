@@ -35,7 +35,7 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
 	    :rules => {
             :groups => {
               :createMissing => true
-            }
+            },
 	        :templates => {
 	            :createMissing => true,
 	            :updateExisting => true
