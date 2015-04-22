@@ -33,6 +33,9 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     zbx.configurations.import(
 	    :format => "xml",
 	    :rules => {
+            :groups => {
+              :createMissing => true
+            }
 	        :templates => {
 	            :createMissing => true,
 	            :updateExisting => true
