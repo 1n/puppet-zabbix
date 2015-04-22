@@ -42,7 +42,7 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
 	            :updateExisting => true
 	        }
 	    },
-	    :source => "<?xml version=\"1.0\" encoding=\"UTF-8\"?><zabbix_export><version>2.0</version><date>2015-04-20T10:54:33Z</date><groups><group><name>Templates</name></group></groups><templates><template><template>Template role_apache</template><name>Template role_apache</name><description/><groups><group><name>Templates</name></group></groups><applications/><items/><discovery_rules/><macros/><templates/><screens/></template></templates></zabbix_export>"
+	    :source => template_source
 		)
 	end
 
