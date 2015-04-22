@@ -33,17 +33,52 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     zbx.configurations.import(
 	    :format => "xml",
 	    :rules => {
-            :groups => {
-              :createMissing => true
-            },
-	        :templates => {
-	            :createMissing => true,
-	            :updateExisting => true
-	        },
+          :applications => {
+            :createMissing => true,
+            :updateExisting => true
+          },
+          :discoveryRules => {
+            :createMissing => true,
+            :updateExisting => true
+          },
+          :graphs =>{
+            :createMissing => true,
+            :updateExisting => true
+          },
+          :groups => {
+            :createMissing => true
+          },
+          :image => {
+            :createMissing => true,
+            :updateExisting => true
+          },
 	        :items => {
-	            :createMissing => true,
-	            :updateExisting => true
-	        }
+	          :createMissing => true,
+	          :updateExisting => true
+	        },
+          :maps => {
+            :createMissing => true,
+            :updateExisting => true
+          },
+          :screens => {
+            :createMissing => true,
+            :updateExisting => true
+          },
+          :templateLinkage => {
+            :createMissing => true
+          },
+          :templates => {
+            :createMissing => true,
+            :updateExisting => true
+          },
+          :templateScreens => {
+            :createMissing => true,
+            :updateExisting => true
+          },
+          :triggers => {
+            :createMissing => true,
+            :updateExisting => true
+          }
 	    },
 	    :source => template_source
 		)
