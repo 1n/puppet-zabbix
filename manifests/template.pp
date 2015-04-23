@@ -3,7 +3,7 @@ define zabbix::template (
   $templ_source = '',
 ) {
 
-  zabbix::resources::template { $templ_name:
+  zabbix::resources::template { $name:
     template_name   => $templ_name,
     template_source => $templ_source,
   }
