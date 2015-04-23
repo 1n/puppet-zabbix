@@ -14,8 +14,8 @@
 #
 #
 define zabbix::resources::template (
-  $template_name   = undef,
-  $template_source = undef,
+  $template_name,
+  $template_source,
 ) {
 
   @@zabbix_template { $template_name:
