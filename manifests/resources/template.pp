@@ -16,6 +16,10 @@
 class zabbix::resources::template (
   $template_name   = undef,
   $template_source = undef,
+  $zabbix_url      = undef,
+  $zabbix_user     = undef,
+  $zabbix_pass     = undef,
+  $apache_use_ssl  = undef,
 ) {
 
   zabbix_template { $template_name:
