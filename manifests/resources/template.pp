@@ -18,7 +18,7 @@ class zabbix::resources::template (
   $template_source = undef,
 ) {
 
-  @@zabbix_template { $template_name:
+  zabbix_template { $template_name:
     template_source => $template_source,
     zabbix_url     	=> '',
     zabbix_user    	=> '',
