@@ -31,8 +31,8 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     end
 =end
     zbx.configurations.import(
-	    :format => "xml",
-	    :rules => {
+      :format => "xml",
+      :rules => {
           :applications => {
             :createMissing => true,
             :updateExisting => true
@@ -52,10 +52,10 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
             :createMissing => true,
             :updateExisting => true
           },
-	        :items => {
-	          :createMissing => true,
-	          :updateExisting => true
-	        },
+          :items => {
+            :createMissing => true,
+            :updateExisting => true
+          },
           :maps => {
             :createMissing => true,
             :updateExisting => true
@@ -79,10 +79,10 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
             :createMissing => true,
             :updateExisting => true
           }
-	    },
-	    :source => template_source
-		)
-	end
+      },
+      :source => template_source
+    )
+  end
 
   def exists?
     zabbix_url = @resource[:zabbix_url]

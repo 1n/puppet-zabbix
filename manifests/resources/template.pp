@@ -13,16 +13,16 @@
 # for loading this class manually.
 #
 #
-class zabbix::resources::template (
+define zabbix::resources::template (
   $template_name   = undef,
   $template_source = undef,
 ) {
 
   @@zabbix_template { $template_name:
     template_source => $template_source,
-    zabbix_url     	=> '',
-    zabbix_user    	=> '',
-    zabbix_pass    	=> '',
-    apache_use_ssl 	=> '',
+    zabbix_url      => '',
+    zabbix_user     => '',
+    zabbix_pass     => '',
+    apache_use_ssl  => '',
   }
 }
