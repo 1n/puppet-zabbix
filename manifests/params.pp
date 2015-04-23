@@ -226,8 +226,4 @@ class zabbix::params {
   $javagateway_listenip          = '0.0.0.0'
   $javagateway_listenport        = '10052'
   $javagateway_startpollers      = '5'
-
-  # Template specific params
-  $templ_name                    = undef
-  $templ_source                  = undef
 }
