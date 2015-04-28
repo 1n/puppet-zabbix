@@ -64,7 +64,7 @@ class Puppet::Provider::Zabbix < Puppet::Provider
     def self.check_template_exist(template,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
         begin
             zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-            zbx.templates_get_id(zbx,template)
+            zbx.templates.get_id( :host => template )
         rescue Puppet::ExecutionFailure => e
             false
         end
