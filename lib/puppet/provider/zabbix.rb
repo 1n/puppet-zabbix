@@ -71,13 +71,18 @@ class Puppet::Provider::Zabbix < Puppet::Provider
     end
 
     def self.check_template_is_equal(template,template_source,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-        exported = zbx.configurations.export(
-            :format => "xml",
-            :options => {
-                :templates => [zbx.templates.get_id(:host => "template")]
-            }
-        )
-        exported.eql? template_source
+        begin
+            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+            exported = zbx.configurations.export(
+                :format => "xml",
+                :options => {
+                    :templates => [zbx.templates.get_id(:host => "template")]
+                }
+            )
+            exported.eql? template_source
+        rescue Puppet::ExecutionFailure => e
+            false
+        end
     end
 
     # Is it an number?
