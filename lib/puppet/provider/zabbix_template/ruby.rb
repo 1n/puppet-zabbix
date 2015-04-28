@@ -87,8 +87,8 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     apache_use_ssl = @resource[:apache_use_ssl]
 
     zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-    self.class.check_template_exist(template_name,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-
+    #self.class.check_template_exist(template_name,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    self.class.check_template_is_equal(template_name,template_source,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
 
     #return false
   end

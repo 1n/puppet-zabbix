@@ -61,13 +61,23 @@ class Puppet::Provider::Zabbix < Puppet::Provider
         template_array.include?("#{template_id}")
     end
 
-    def self.check_template_exist(template,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    def self.check_template_exist(template,template_source,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
         begin
             zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
             zbx.templates.get_id( :host => template )
         rescue Puppet::ExecutionFailure => e
             false
         end
+    end
+
+    def self.check_template_is_equal(template,template_source,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+        exported = zbx.configurations.export(
+            :format => "xml",
+            :options => {
+                :templates => [zbx.templates.get_id(:host => "template")]
+            }
+        )
+        exported.eql? template_source
     end
 
     # Is it an number?
