@@ -79,7 +79,9 @@ class Puppet::Provider::Zabbix < Puppet::Provider
                     :templates => [zbx.templates.get_id(:host => template)]
                 }
             )
-            exported.gsub(/<date>.*<\/date>/,"DATEWASHERE").eql? template_source.gsub(/<date>.*<\/date>/,"DATEWASHERE")
+            exported_clean = exported.gsub(/>\s*/, ">").gsub(/\s*</, "<").gsub(/<date>.*<\/date>/,"DATEWASHERE")
+            template_source_clean = template_source.gsub(/>\s*/, ">").gsub(/\s*</, "<").gsub(/<date>.*<\/date>/,"DATEWASHERE")
+            exported_clean.eql? template_source_clean
         rescue Puppet::ExecutionFailure => e
             false
         end
