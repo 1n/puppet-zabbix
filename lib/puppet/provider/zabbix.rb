@@ -61,6 +61,15 @@ class Puppet::Provider::Zabbix < Puppet::Provider
         template_array.include?("#{template_id}")
     end
 
+    def self.check_template_exist(template,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+        begin
+            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+            zbx.templates_get_id(zbx,template)
+        rescue Puppet::ExecutionFailure => e
+            false
+        end
+    end
+
     # Is it an number?
     def self.is_a_number?(s)
         s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true

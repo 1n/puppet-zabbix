@@ -18,18 +18,7 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
 
     # Connect to zabbix api
     zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-=begin
-    # Get the template ids.
-    template_array = Array.new
-    if templates.kind_of?(Array)
-        templates.each do |template|
-            template_id = self.class.get_template_id(zbx, template)
-            template_array.push template_id
-        end
-    else
-        template_array.push self.class.get_template_id(zbx, templates)
-    end
-=end
+
     zbx.configurations.import(
       :format => "xml",
       :rules => {
@@ -97,9 +86,11 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     zabbix_pass = @resource[:zabbix_pass]
     apache_use_ssl = @resource[:apache_use_ssl]
 
-    #zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-    #template_id = self.class.get_template_id(zbx, template_name)
-    return false    
+    zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    self.class.check_template_exist(zbx,template_name)
+
+
+    #return false
   end
 
 end
