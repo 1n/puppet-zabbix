@@ -76,7 +76,7 @@ class Puppet::Provider::Zabbix < Puppet::Provider
             exported = zbx.configurations.export(
                 :format => "xml",
                 :options => {
-                    :templates => [zbx.templates.get_id(:host => "template")]
+                    :templates => [zbx.templates.get_id(:host => template)]
                 }
             )
             exported.gsub(/<date>.*<\/date>/,"DATEWASHERE").eql? template_source.gsub(/<date>.*<\/date>/,"DATEWASHERE")
