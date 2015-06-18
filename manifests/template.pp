@@ -29,14 +29,11 @@
 define zabbix::template (
   $templ_name            = $title,
   $templ_source          = '',
-  $manage_resources      = $zabbix::params::manage_resources,
-  ) inherits zabbix::params {
+  )
   
-  if $manage_resources {
-    zabbix::resources::template { $templ_name:
-      template_name   => $templ_name,
-      template_source => $templ_source,
-      require         => Package['zabbixapi'],
-    }
+  zabbix::resources::template { $templ_name:
+    template_name   => $templ_name,
+    template_source => $templ_source,
+    require         => Package['zabbixapi'],
   }
 }
