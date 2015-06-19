@@ -34,6 +34,6 @@ define zabbix::template (
   zabbix::resources::template { $templ_name:
     template_name   => $templ_name,
     template_source => $templ_source,
-    require         => Package['zabbixapi'],
+    before          => Class['zabbix::resources::web'],
   }
 }
