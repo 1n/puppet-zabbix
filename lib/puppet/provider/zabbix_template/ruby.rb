@@ -91,4 +91,22 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
 
   end
 
+  def destroy
+    zabbix_url = @resource[:zabbix_url]
+
+    if zabbix_url != ''
+        self.class.require_zabbix
+    end
+
+    template_name = @resource[:template_name]
+    template_source = @resource[:template_source]
+    zabbix_user = @resource[:zabbix_user]
+    zabbix_pass = @resource[:zabbix_pass]
+    apache_use_ssl = @resource[:apache_use_ssl]
+
+    zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    self.template.delete(zbx.template.get_or_create(:host => template_name))
+
+  end
+
 end
