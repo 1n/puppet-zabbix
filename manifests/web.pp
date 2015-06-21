@@ -197,29 +197,6 @@ class zabbix::web (
     }
   }
 
-  # So if manage_resources is set to true, we can send some data
-  # to the puppetdb. We will include an class, otherwise when it
-  # is set to false, you'll get warnings like this:
-  # "Warning: You cannot collect without storeconfigs being set"
-  if $manage_resources {
-    include ruby::dev
-
-    # Installing the zabbixapi gem package. We need this gem for
-    # communicating with the zabbix-api. This is way better then
-    # doing it ourself.
-    package { 'zabbixapi':
-      ensure   => "${zabbix_version}.0",
-      provider => $::puppetgem,
-      require  => Class['ruby::dev'],
-    } ->
-    class { 'zabbix::resources::web':
-      zabbix_url     => $zabbix_url,
-      zabbix_user    => $zabbix_api_user,
-      zabbix_pass    => $zabbix_api_pass,
-      apache_use_ssl => $apache_use_ssl,
-    }
-  }
-
   case $::operatingsystem {
     'ubuntu', 'debian' : {
       package { "php5-${db}":
