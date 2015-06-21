@@ -34,10 +34,7 @@ class zabbix::resources::web (
     zabbix_user    => $zabbix_user,
     zabbix_pass    => $zabbix_pass,
     apache_use_ssl => $apache_use_ssl,
-    require        => [
-      Service['zabbix-server'],
-      Package['zabbixapi'],
-    ],
+    require        => Package['zabbixapi'],
   } ->
   Zabbix_host <<| |>> {
     zabbix_url     => $zabbix_url,
