@@ -78,6 +78,12 @@
 # [*zabbix_api_pass*]
 #   Password of the user which connects to the api. Default: zabbix
 #
+# [*api_use_ssl*]
+#   Provide ability to override apache_use_ssl and use api with https even if
+#   you don't configure ssl for zabbix apache (in case you use external
+#   provider for ssl, for ex. ELB)
+#   Default: undef
+#
 # [*database_host*]
 #   Database host name.
 #
@@ -187,6 +193,7 @@ class zabbix::web (
   $apache_listenport_ssl                    = $zabbix::params::apache_listenport_ssl,
   $zabbix_api_user                          = $zabbix::params::server_api_user,
   $zabbix_api_pass                          = $zabbix::params::server_api_pass,
+  $api_use_ssl                              = $zabbix::params::api_use_ssl,
   $database_host                            = $zabbix::params::server_database_host,
   $database_name                            = $zabbix::params::server_database_name,
   $database_schema                          = $zabbix::params::server_database_schema,
@@ -252,6 +259,13 @@ class zabbix::web (
       }
     }
 
+    if $api_use_ssl == undef {
+      $api_use_ssl_real = $apache_use_ssl
+    }
+    else {
+      $api_use_ssl_real = $api_use_ssl
+    }
+
     # Installing the zabbixapi gem package. We need this gem for
     # communicating with the zabbix-api. This is way better then
     # doing it ourself.
@@ -270,7 +284,7 @@ class zabbix::web (
       zabbix_url     => $zabbix_url,
       zabbix_user    => $zabbix_api_user,
       zabbix_pass    => $zabbix_api_pass,
-      apache_use_ssl => $apache_use_ssl,
+      apache_use_ssl => $api_use_ssl_real,
     }
   }
 

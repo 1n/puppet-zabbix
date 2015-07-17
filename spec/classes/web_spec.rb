@@ -75,7 +75,7 @@ describe 'zabbix::web' do
 
       it { should contain_package('zabbixapi').with_provider('pe_puppetserver_gem') }
     end
-    
+
     describe "when manage_resources is false" do
       let (:params) do
         super().merge({
@@ -104,6 +104,68 @@ describe 'zabbix::web' do
       it { should contain_file('/etc/zabbix/web/zabbix.conf.php').with_content(/^\$DB\['USER'\]     = 'zabbix-server'/) }
       it { should contain_file('/etc/zabbix/web/zabbix.conf.php').with_content(/^\$DB\['PASSWORD'\] = 'zabbix-server'/) }
       it { should contain_file('/etc/zabbix/web/zabbix.conf.php').with_content(/^\$ZBX_SERVER      = 'localhost'/) }
+    end
+
+    context 'with apache_use_ssl true setting' do
+      let (:params) do
+        super().merge({
+          :manage_resources => true,
+          :apache_use_ssl => true
+        })
+      end
+
+      it { should contain_apache__vhost('zabbix.example.com_nonssl').with_name('zabbix.example.com_nonssl') }
+      it { should contain_class('zabbix::resources::web').with_apache_use_ssl('true') }
+    end
+
+    context 'with apache_use_ssl false setting' do
+      let (:params) do
+        super().merge({
+          :manage_resources => true,
+          :apache_use_ssl => false,
+        })
+      end
+
+      it { should_not contain_apache__vhost('zabbix.example.com_nonssl').with_name('zabbix.example.com_nonssl') }
+      it { should contain_class('zabbix::resources::web').with_apache_use_ssl('false') }
+    end
+
+    context 'with api_use_ssl true setting' do
+      let (:params) do
+        super().merge({
+          :manage_resources => true,
+          :api_use_ssl => true
+        })
+      end
+
+      it { should_not contain_apache__vhost('zabbix.example.com_nonssl').with_name('zabbix.example.com_nonssl') }
+      it { should contain_class('zabbix::resources::web').with_apache_use_ssl('true') }
+    end
+
+    context 'with apache_use_ssl true and api_use_ssl false setting' do
+      let (:params) do
+        super().merge({
+          :manage_resources => true,
+          :apache_use_ssl => true,
+          :api_use_ssl => false
+        })
+      end
+
+      it { should contain_apache__vhost('zabbix.example.com_nonssl').with_name('zabbix.example.com_nonssl') }
+      it { should contain_class('zabbix::resources::web').with_apache_use_ssl('false') }
+    end
+
+    context 'with apache_use_ssl false and api_use_ssl true setting' do
+      let (:params) do
+        super().merge({
+          :manage_resources => true,
+          :apache_use_ssl => false,
+          :api_use_ssl => true
+        })
+      end
+
+      it { should_not contain_apache__vhost('zabbix.example.com_nonssl').with_name('zabbix.example.com_nonssl') }
+      it { should contain_class('zabbix::resources::web').with_apache_use_ssl('true') }
     end
   end
 end

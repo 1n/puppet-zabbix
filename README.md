@@ -341,6 +341,7 @@ This is the class for installing everything on a single host and thus all parame
 * `apache_php_always_populate_raw_post_data`: Default: -1
 * `zabbix_api_user`: Username of user in Zabbix which is able to create hosts and edit hosts via the zabbix-api. Default: Admin
 * `zabbix_api_pass`: Password for the user in Zabbix for zabbix-api usage. Default: zabbix
+* `api_use_ssl`: Use https for api calls in case you use external ssl provider(not zabbix apache) Default: undef
 * `zabbix_template_dir`: The directory where all templates are stored before uploading via API
 * `ldap_cacert`: The location of the CA Cert to be used for Zabbix LDAP authentication. The module will not install this file so it must be present on the system.
 * `ldap_clientcrt`: The location of the Client Cert to be used for Zabbix LDAP authentication. The module will not install this file so it must be present on the system.
