@@ -16,14 +16,14 @@ class zabbix::resources::web (
   $zabbix_url     = undef,
   $zabbix_user    = undef,
   $zabbix_pass    = undef,
-  $apache_use_ssl = undef,
+  $api_use_ssl = undef,
 ) {
 
   Zabbix_proxy <<| |>> {
     zabbix_url     => $zabbix_url,
     zabbix_user    => $zabbix_user,
     zabbix_pass    => $zabbix_pass,
-    apache_use_ssl => $apache_use_ssl,
+    api_use_ssl    => $api_use_ssl,
     require        => [
       Service['zabbix-server'],
       Package['zabbixapi'],
@@ -33,18 +33,18 @@ class zabbix::resources::web (
     zabbix_url     => $zabbix_url,
     zabbix_user    => $zabbix_user,
     zabbix_pass    => $zabbix_pass,
-    apache_use_ssl => $apache_use_ssl,
+    api_use_ssl    => $api_use_ssl,
   } ->
   Zabbix_host <<| |>> {
     zabbix_url     => $zabbix_url,
     zabbix_user    => $zabbix_user,
     zabbix_pass    => $zabbix_pass,
-    apache_use_ssl => $apache_use_ssl,
+    api_use_ssl    => $api_use_ssl,
   } ->
   Zabbix_userparameters <<| |>> {
     zabbix_url     => $zabbix_url,
     zabbix_user    => $zabbix_user,
     zabbix_pass    => $zabbix_pass,
-    apache_use_ssl => $apache_use_ssl,
+    api_use_ssl    => $api_use_ssl,
   }
 }

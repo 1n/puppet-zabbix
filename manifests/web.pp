@@ -216,7 +216,7 @@ class zabbix::web (
       zabbix_url     => $zabbix_url,
       zabbix_user    => $zabbix_api_user,
       zabbix_pass    => $zabbix_api_pass,
-      apache_use_ssl => $apache_use_ssl,
+      api_use_ssl    => $api_use_ssl,
     }
   }
 

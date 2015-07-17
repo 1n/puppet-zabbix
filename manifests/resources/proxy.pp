@@ -30,7 +30,7 @@ class zabbix::resources::proxy (
       zabbix_url     => '',
       zabbix_user    => '',
       zabbix_pass    => '',
-      apache_use_ssl => '',
+      api_use_ssl    => '',
     }
 
 }

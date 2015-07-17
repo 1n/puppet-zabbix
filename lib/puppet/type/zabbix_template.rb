@@ -25,7 +25,7 @@ Puppet::Type.newtype(:zabbix_template) do
       desc 'Zabbix-api password.'
   end
 
-  newparam(:apache_use_ssl) do
+  newparam(:api_use_ssl) do
       desc 'If apache is uses with ssl'
   end
 end

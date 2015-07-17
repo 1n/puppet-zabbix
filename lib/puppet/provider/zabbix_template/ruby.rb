@@ -14,10 +14,10 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     zabbix_url = @resource[:zabbix_url]
     zabbix_user = @resource[:zabbix_user]
     zabbix_pass = @resource[:zabbix_pass]
-    apache_use_ssl = @resource[:apache_use_ssl]
+    api_use_ssl = @resource[:api_use_ssl]
 
     # Connect to zabbix api
-    zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
 
     zbx.configurations.import(
       :format => "xml",
@@ -84,10 +84,10 @@ Puppet::Type.type(:zabbix_template).provide(:ruby, :parent => Puppet::Provider::
     template_source = @resource[:template_source]
     zabbix_user = @resource[:zabbix_user]
     zabbix_pass = @resource[:zabbix_pass]
-    apache_use_ssl = @resource[:apache_use_ssl]
+    api_use_ssl = @resource[:api_use_ssl]
 
-    zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-    self.class.check_template_is_equal(template_name,template_source,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
+    self.class.check_template_is_equal(template_name,template_source,zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
 
   end
 

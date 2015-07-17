@@ -19,9 +19,9 @@ Puppet::Type.type(:zabbix_proxy).provide(:ruby, :parent => Puppet::Provider::Zab
         templates = @resource[:templates]
         zabbix_user = @resource[:zabbix_user]
         zabbix_pass = @resource[:zabbix_pass]
-        apache_use_ssl = @resource[:apache_use_ssl]
+        api_use_ssl = @resource[:api_use_ssl]
 
-        zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+        zbx = self.class.create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
 
         # Get the template ids.
         template_array = Array.new
@@ -70,9 +70,9 @@ Puppet::Type.type(:zabbix_proxy).provide(:ruby, :parent => Puppet::Provider::Zab
         host = @resource[:hostname]
         zabbix_user = @resource[:zabbix_user]
         zabbix_pass = @resource[:zabbix_pass]
-        apache_use_ssl = @resource[:apache_use_ssl]
+        api_use_ssl = @resource[:api_use_ssl]
 
-        self.class.check_proxy(host,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+        self.class.check_proxy(host,zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
     end
 
 end

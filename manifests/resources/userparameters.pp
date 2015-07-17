@@ -23,7 +23,7 @@ define zabbix::resources::userparameters (
     zabbix_url     => '',
     zabbix_user    => '',
     zabbix_pass    => '',
-    apache_use_ssl => '',
+    api_use_ssl    => '',
   }
 
 }

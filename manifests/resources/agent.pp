@@ -35,6 +35,6 @@ class zabbix::resources::agent (
     zabbix_url     => '',
     zabbix_user    => '',
     zabbix_pass    => '',
-    apache_use_ssl => '',
+    api_use_ssl    => '',
   }
 }

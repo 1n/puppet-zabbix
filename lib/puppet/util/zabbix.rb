@@ -13,7 +13,7 @@ module Puppet::Util::Zabbix
       desc 'Zabbix-api password.'                 
     end
 
-    type.newparam(:apache_use_ssl) do                    
+    type.newparam(:api_use_ssl) do                    
       desc 'If apache is uses with ssl'           
     end
   end

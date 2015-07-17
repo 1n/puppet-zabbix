@@ -6,8 +6,8 @@ class Puppet::Provider::Zabbix < Puppet::Provider
     end
 
     # Create the api connection
-    def self.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-        if apache_use_ssl
+    def self.create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
+        if api_use_ssl
             protocol = 'https'
         else
             protocol = 'http'
@@ -21,9 +21,9 @@ class Puppet::Provider::Zabbix < Puppet::Provider
     end
 
     # Check if host exists. When error raised, return false.
-    def self.check_host(host,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    def self.check_host(host,zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
         begin
-            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
             zbx.hosts.get_id(:host => host)
         rescue Puppet::ExecutionFailure => e
             false
@@ -31,10 +31,10 @@ class Puppet::Provider::Zabbix < Puppet::Provider
     end
 
     # Check if proxy exists. When error raised, return false.
-    def self.check_proxy(host,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    def self.check_proxy(host,zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
         begin
             require_zabbix
-            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
             zbx.proxies.get_id(:host => host)
         rescue Puppet::ExecutionFailure => e
             false
@@ -52,8 +52,8 @@ class Puppet::Provider::Zabbix < Puppet::Provider
     end
 
     # Check if given template name exists in current host.
-    def self.check_template_in_host(host,template,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
-        zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    def self.check_template_in_host(host,template,zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
+        zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
         template_id = self.get_template_id(zbx,template)
         template_array = Array.new
         template_array = zbx.templates.get_ids_by_host( :hostids => [zbx.hosts.get_id(:host => host)] )
@@ -61,18 +61,18 @@ class Puppet::Provider::Zabbix < Puppet::Provider
         template_array.include?("#{template_id}")
     end
 
-    def self.check_template_exist(template,template_source,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    def self.check_template_exist(template,template_source,zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
         begin
-            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
             zbx.templates.get_id( :host => template )
         rescue Puppet::ExecutionFailure => e
             false
         end
     end
 
-    def self.check_template_is_equal(template,template_source,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+    def self.check_template_is_equal(template,template_source,zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
         begin
-            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
+            zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,api_use_ssl)
             exported = zbx.configurations.export(
                 :format => "xml",
                 :options => {
