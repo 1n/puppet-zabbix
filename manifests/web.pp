@@ -167,6 +167,7 @@ class zabbix::web (
   $apache_listenport_ssl                    = $zabbix::params::apache_listenport_ssl,
   $zabbix_api_user                          = $zabbix::params::server_api_user,
   $zabbix_api_pass                          = $zabbix::params::server_api_pass,
+  $api_use_ssl                              = $zabbix::params::apache_use_ssl,
   $database_host                            = $zabbix::params::server_database_host,
   $database_name                            = $zabbix::params::server_database_name,
   $database_schema                          = $zabbix::params::server_database_schema,
@@ -226,7 +227,7 @@ class zabbix::web (
       zabbix_url     => $zabbix_url,
       zabbix_user    => $zabbix_api_user,
       zabbix_pass    => $zabbix_api_pass,
-      apache_use_ssl => $apache_use_ssl,
+      apache_use_ssl => $api_use_ssl,
     }
   }
 
