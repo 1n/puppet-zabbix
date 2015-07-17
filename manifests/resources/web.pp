@@ -16,7 +16,7 @@ class zabbix::resources::web (
   $zabbix_url     = undef,
   $zabbix_user    = undef,
   $zabbix_pass    = undef,
-  $api_use_ssl = undef,
+  $api_use_ssl    = undef,
 ) {
 
   Zabbix_proxy <<| |>> {
