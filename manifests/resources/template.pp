@@ -14,11 +14,13 @@
 #
 #
 define zabbix::resources::template (
-  $template_name   = $title,
+  $hostname,
+  $template_name,
   $template_source = '',
 ) {
 
-  @@zabbix_template { $template_name:
+  @@zabbix_template { "${hostname}_${template_name}":
+    template_name   => $template_name,
     template_source => $template_source,
     zabbix_url      => '',
     zabbix_user     => '',
