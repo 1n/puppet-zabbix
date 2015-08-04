@@ -32,7 +32,6 @@ define zabbix::template (
 ) {
 
   zabbix::resources::template { $templ_name:
-    hostname        => $::fqdn,
     template_name   => $templ_name,
     template_source => $templ_source,
   }
