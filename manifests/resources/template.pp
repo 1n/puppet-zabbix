@@ -14,11 +14,12 @@
 #
 #
 define zabbix::resources::template (
+  $hostname,
   $template_name,
   $template_source = '',
 ) {
 
-  @@zabbix_template { "${::fqdn}_${name}":
+  @@zabbix_template { "${hostname}_${name}":
     template_name   => $template_name,
     template_source => $template_source,
     zabbix_url      => '',
