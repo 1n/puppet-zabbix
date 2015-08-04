@@ -14,11 +14,11 @@
 #
 #
 define zabbix::resources::template (
-  $template_name = $title,
+  $template_name   = $title,
   $template_source = '',
 ) {
 
-  @zabbix_template { $template_name:
+  @@zabbix_template { "${::fqdn}_${template_name}":
     template_source => $template_source,
     zabbix_url      => '',
     zabbix_user     => '',
