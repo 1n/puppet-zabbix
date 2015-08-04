@@ -18,7 +18,7 @@ define zabbix::resources::template (
   $template_source = '',
 ) {
 
-  @@zabbix_template { "${::fqdn}_${template_name}":
+  @@zabbix_template { "${::fqdn}_${name}":
     template_name   => $template_name,
     template_source => $template_source,
     zabbix_url      => '',
