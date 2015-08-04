@@ -31,8 +31,7 @@ define zabbix::template (
   $templ_source = '',
 ) {
 
-  zabbix::resources::template { "${::hostname}_${templ_name}":
-    hostname        => $::fqdn,
+  zabbix::resources::template { $templ_name:
     template_name   => $templ_name,
     template_source => $templ_source,
   }
