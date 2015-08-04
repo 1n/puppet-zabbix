@@ -27,11 +27,11 @@
 # Copyright 2015  Vladislav Tkatchev
 #
 define zabbix::template (
-  $templ_name   = $name,
+  $templ_name   = $title,
   $templ_source = '',
 ) {
 
-  zabbix::resources::template { "${::hostname}_${name}":
+  zabbix::resources::template { $templ_name:
     hostname        => $::fqdn,
     template_name   => $templ_name,
     template_source => $templ_source,
