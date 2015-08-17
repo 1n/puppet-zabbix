@@ -5,11 +5,7 @@ Puppet::Type.newtype(:zabbix_template) do
     defaultto :present
   end
 
-  newparam(:name, :namevar => true) do
-      desc 'An unique name for this define.'
-  end
-
-  newparam(:template_name) do
+  newparam(:template_name, :namevar => true) do
       desc 'The name of template.'
   end
 
